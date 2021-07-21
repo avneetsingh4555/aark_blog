@@ -1,0 +1,298 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.ico' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Light Bootstrap Dashboard by Creative Tim</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet" />
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{% static 'css/light-bootstrap-dashboard.css' %}" rel="stylesheet" />
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{% static 'css/demo.css' %}" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+   
+   
+    <link href="{% static 'css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+    <style>
+        .nav_sidebar li{
+    width: 254px !important;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="sidebar" data-color="orange">
+
+            <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+        
+        
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    
+                    <img src="{% static 'img/aarklogo.png' %}" class="simple" style="height: 60px; text-align: center; margin-left: 25%;" alt="">
+                    
+                </div>
+               
+                <ul class="nav nav_sidebar">
+                    <li>
+                        <a href="/" action="blogsub">
+
+                            <p>Your Profile</p>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a href="editblog" action="blogsub">
+                           
+                            <p>blogs</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bloglist" action="bloglist">
+                            
+                            <p>Blog List</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#navigation-example-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">User:Submit Your Blog</a>
+                    </div>
+                    <div class="navbar-header" >
+                       
+                        <ul class="nav navbar-nav navbar-right">
+                          
+                            <li>
+                                <a href="logout">
+                                    <p>Log out</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                       
+                    </div>
+                    <div class="collapse navbar-collapse">
+                       
+
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                            
+                            <li>
+                                <a href="logout">
+                                    <p>Log out</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Enter Your Blog</h4>
+                                </div>
+                                <div class="content">
+                                    <form method="POST" onsubmit="return validation()" action="blogsub" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">TITLE</label>
+                                                    <input type="text" id="tit" class="form-control" placeholder="Enter Title" name="title">
+                                                    <span id="title" class="text-danger font-weight-bold"> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>SUBTITLE</label>
+                                                    <input type="text" id="subt" class="form-control" placeholder="Enter Subtitle" name="subtitle">
+                                                    <span id="subtitle" class="text-danger font-weight-bold"> </span>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+    
+                                        
+    
+                                       
+    
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">    
+                                                    <label>Description</label>
+                                                    <textarea rows="5" id="desc" class="form-control" placeholder="Here can be your description" name="description" value="Mike"></textarea>
+                                                    <span id="description" class="text-danger font-weight-bold"> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">    
+                                                    <label>Upload Image</label>
+                                                    <input type='file' id="bpic" name="blogpic" onchange="readURL(this);" />
+                                                    <span id="blogpic" class="text-danger font-weight-bold"> </span>
+    
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+    
+                                        <button type="submit" class="btn btn-info btn-fill pull-right">Submit</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-user">
+                                <div class="image">
+                                
+                                </div>
+                                <div class="content">
+                                    <div class="author">
+                                         <a href="#">
+                                        
+                                            <!-- <img src="/media/{{p}}" width="280" height="250" alt=""> -->
+                                            <img id="blah" src="#" alt="" />
+                                            
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+    
+    
+
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(250)
+                    .height(250);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function validation(){
+
+        var t= document.getElementById('tit').value;
+        var s = document.getElementById('subt').value;
+        var d = document.getElementById('desc').value;
+        var b = document.getElementById('bpic').value;
+        
+
+
+
+
+
+        if(t == ""){
+            document.getElementById('title').innerHTML =" ** Please fill the title field";
+            return false;
+        }
+       
+        if(s == ""){
+            document.getElementById('subtitle').innerHTML =" ** Please fill the subtitle field";
+            return false;
+        }
+        if(d == ""){
+            document.getElementById('description').innerHTML =" ** Please fill the description field";
+            return false;
+        }
+        if(b == ""){
+            document.getElementById('blogpic').innerHTML =" ** Please select an image";
+            return false;
+        }
+        
+
+
+        
+    }
+
+    
+</script>
+
+</body>
+
+<!--   Core JS Files   -->
+<script src="{% static 'js/jquery.3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script src="{% static 'js/chartist.min.js' %}"></script>
+
+<!--  Notifications Plugin    -->
+<script src="{% static 'js/bootstrap-notify.js' %}"></script>
+
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="{% static 'js/light-bootstrap-dashboard.js' %}"></script>
+
+<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+<script src="{% static 'js/demo.js' %}"></script>
+
+</html>
